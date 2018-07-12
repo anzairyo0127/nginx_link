@@ -5,14 +5,15 @@ services:
         container_name: ${container_name_flask}
         build: ./flask_app
         volumes:
-            - ./flask_app/config/:${container_mountpoint_flask}
+            - ./flask_app/config/:${container_mountpoint_uwsgi}
+            - ./flask_app/www/:${container_mountpoint_www}
         ports:
             - "${port_of_flask}"
         environment:
             TZ: "Asia/Tokyo"
         stdin_open: true
         tty: true 
-        command: uwsgi --ini ${container_mountpoint_flask}uwsgi.ini
+        command: uwsgi --ini ${container_mountpoint_uwsgi}uwsgi.ini
 
     nginx:
         env_file: .env
