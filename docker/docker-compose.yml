@@ -3,7 +3,7 @@ services:
     fapp:
         env_file: .env
         container_name: ${container_name_flask}
-        build: ./flask_app
+        build: flask_app
         volumes:
             - ./flask_app/config/:${container_mountpoint_uwsgi}
             - ./flask_app/www/:${container_mountpoint_www}
@@ -18,7 +18,7 @@ services:
     nginx:
         env_file: .env
         container_name: ${container_name_nginx}
-        image: nginx:${version_of_nginx}
+        image: nginx
         volumes:
             - ./nginx/publich:/hostos/publich/
             - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
